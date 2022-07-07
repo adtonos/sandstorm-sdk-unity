@@ -1,0 +1,429 @@
+{
+  "homepages": [],
+  "source_base_path": "/Users/grzegorz/Documents/dev/adtonosunityplugin",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_api/Sandstorm.ATSandstormSDK.yml",
+      "output": {
+        ".html": {
+          "relative_path": "_api/Sandstorm.ATSandstormSDK.html",
+          "hash": "Jfk3bCJ5vf9kHwskU8OpftfwvawRuB5y4+9JzhxCNTk="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_api/Sandstorm.AdTonosConsent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "_api/Sandstorm.AdTonosConsent.html",
+          "hash": "eJsje8OUQyETdz2sxdScB3nWiu710W6a0QYJz7aYlH0="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_api/Sandstorm.Logs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "_api/Sandstorm.Logs.html",
+          "hash": "UbeJcRJEAl58lvHXKpJRw5aqKufwjF+m5h5EmIv/Jbc="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_api/Sandstorm.Sandstorm.yml",
+      "output": {
+        ".html": {
+          "relative_path": "_api/Sandstorm.Sandstorm.html",
+          "hash": "Ov8hGqFMSBFHLr0A1L4AvQ7RWpJtY1WPlwjprzm89DU="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_api/Sandstorm.SandstormAd.yml",
+      "output": {
+        ".html": {
+          "relative_path": "_api/Sandstorm.SandstormAd.html",
+          "hash": "5UzgbDCHA7Tz8N3tNtlJZlgZsZdhgOGuqYZeXFniIOM="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_api/Sandstorm.SandstormAdRequestResult.yml",
+      "output": {
+        ".html": {
+          "relative_path": "_api/Sandstorm.SandstormAdRequestResult.html",
+          "hash": "3ipig99YZzTWtyB6hZ4bQNGrqGME2Ia1VWiaB0t0ZYI="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_api/Sandstorm.SandstormAdType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "_api/Sandstorm.SandstormAdType.html",
+          "hash": "ulb5zKyAvZav2rg1MKmby1j71n0G2cBDd+K3Z6O/qno="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_api/Sandstorm.SandstormBannerPosition.yml",
+      "output": {
+        ".html": {
+          "relative_path": "_api/Sandstorm.SandstormBannerPosition.html",
+          "hash": "jJye5yzp5JbYTIhx/ZVETwh1Aa0lNvbUv5hHMeUBCWY="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_api/Sandstorm.SandstormCallback.yml",
+      "output": {
+        ".html": {
+          "relative_path": "_api/Sandstorm.SandstormCallback.html",
+          "hash": "vGwnzisq0SM3CCmyy4z3rdbTi/jmzSKrbwH/Mmjt3i0="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_api/Sandstorm.SandstormError.yml",
+      "output": {
+        ".html": {
+          "relative_path": "_api/Sandstorm.SandstormError.html",
+          "hash": "tS/hAc0nZbygTLpxdockLYYTxiZBT4V8hj+hTC/9ccI="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_api/Sandstorm.SandstormErrorInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "_api/Sandstorm.SandstormErrorInfo.html",
+          "hash": "kVYqQ4eLTqX5hF/PgrdeaHo/FW1K4WzDQC5tavkcrws="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_api/Sandstorm.SandstormInvalidKeyException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "_api/Sandstorm.SandstormInvalidKeyException.html",
+          "hash": "qYNCuqtEP5FDJKmelmmAJxO4HxPjGfhQlLj/yJqk3og="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_api/Sandstorm.SandstormInvalidLanguageException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "_api/Sandstorm.SandstormInvalidLanguageException.html",
+          "hash": "0S2S2Viq8yvCvnIW2bhLQrBoDeCdu6Eb1I786g/jo4k="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_api/Sandstorm.SandstormLogger.yml",
+      "output": {
+        ".html": {
+          "relative_path": "_api/Sandstorm.SandstormLogger.html",
+          "hash": "dK1igsSU2ajljTR8t2MQOBWHPHkh9+XaJM+6NKMhfCM="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_api/Sandstorm.SandstormVastClearable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "_api/Sandstorm.SandstormVastClearable.html",
+          "hash": "dqiAGheONYRBRDWYip8Tu3kIBkV9/XkbCi8VKx5Lgt4="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_api/Sandstorm.SandstormVastUrlBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "_api/Sandstorm.SandstormVastUrlBuilder.html",
+          "hash": "f9wvu2/7P6G75sVEcNq1uT1DRe5pQLfXcO6HRRk6vnU="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_api/Sandstorm.Unity.OnMediaDownloaded.yml",
+      "output": {
+        ".html": {
+          "relative_path": "_api/Sandstorm.Unity.OnMediaDownloaded.html",
+          "hash": "g/6dh9MdGw715VEHzlNNyH0FqbIQPSsD17MKa9pWifo="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_api/Sandstorm.Unity.OnPlayerDataUpdated.yml",
+      "output": {
+        ".html": {
+          "relative_path": "_api/Sandstorm.Unity.OnPlayerDataUpdated.html",
+          "hash": "Z9/DvWHFdaxDMQeveFy/00+m3RKsIwBsEKOWWwdchRI="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_api/Sandstorm.Unity.OnVastDownloaded.yml",
+      "output": {
+        ".html": {
+          "relative_path": "_api/Sandstorm.Unity.OnVastDownloaded.html",
+          "hash": "ScKMgOCdpb3/QM1ydGZBHY4W0mli0RBCKrw6QE3pGn8="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_api/Sandstorm.Unity.SandstormContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "_api/Sandstorm.Unity.SandstormContext.html",
+          "hash": "/2/tHHG/OuvAlAeLTSbfeqWbDbUy/+LeI2nEWrDZz00="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_api/Sandstorm.Unity.SandstormCoroutineWrapper-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "_api/Sandstorm.Unity.SandstormCoroutineWrapper-2.html",
+          "hash": "2+CC1Qq80S5gu7bZZIqF0YQmYJK0w8/uTVMdzDiGQMQ="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_api/Sandstorm.Unity.SandstormDispatcher.yml",
+      "output": {
+        ".html": {
+          "relative_path": "_api/Sandstorm.Unity.SandstormDispatcher.html",
+          "hash": "wI1PSySUtPxDjlC7leIx4tfAnILpl4pB+druHfJKOYU="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_api/Sandstorm.Unity.SandstormDownloadResult.yml",
+      "output": {
+        ".html": {
+          "relative_path": "_api/Sandstorm.Unity.SandstormDownloadResult.html",
+          "hash": "G4hlqaUQRW9GR6mnQe0SoNwAfB8jKuW6qzQ/0sNoVbI="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_api/Sandstorm.Unity.SandstormUnity.yml",
+      "output": {
+        ".html": {
+          "relative_path": "_api/Sandstorm.Unity.SandstormUnity.html",
+          "hash": "l+QkClx9ZpMKk4TpzHsAtrMsuVvaL1N8wTjAyESuTVs="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_api/Sandstorm.Unity.SandstormUnityAssetsLoader.yml",
+      "output": {
+        ".html": {
+          "relative_path": "_api/Sandstorm.Unity.SandstormUnityAssetsLoader.html",
+          "hash": "e/v1aoHsGc7JFhfogxW86rRVay6+TbwUNzl+lb/OzEM="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_api/Sandstorm.Unity.SandstormUnityData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "_api/Sandstorm.Unity.SandstormUnityData.html",
+          "hash": "gmo+gKxvl7PFSvlD6srG66cpa53zP2KsdncCDWiDxos="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_api/Sandstorm.Unity.yml",
+      "output": {
+        ".html": {
+          "relative_path": "_api/Sandstorm.Unity.html",
+          "hash": "5FhmYWcbL/QUtuv0JmvtPD2xlwe3NZlaZVp2q16n9Sc="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_api/Sandstorm.Vast.Parser.XmlTextReaderNamespaceIngore.yml",
+      "output": {
+        ".html": {
+          "relative_path": "_api/Sandstorm.Vast.Parser.XmlTextReaderNamespaceIngore.html",
+          "hash": "fMNEV9No2djwOenL9F/Q5peMuOZoa3qgogMDWqSQFdo="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_api/Sandstorm.Vast.Parser.yml",
+      "output": {
+        ".html": {
+          "relative_path": "_api/Sandstorm.Vast.Parser.html",
+          "hash": "7v87BKdJbTJTroORcWsMAec9cKCvRt6Wl5SRYQxEN/s="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_api/Sandstorm.yml",
+      "output": {
+        ".html": {
+          "relative_path": "_api/Sandstorm.html",
+          "hash": "mNU4nQcMjq2mYw2wE9Bc+IQCcUYbT6Ba/4Kp1N+nK8I="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "InvalidFileLink"
+      ],
+      "type": "Conceptual",
+      "source_relative_path": "quick_guide.md",
+      "output": {
+        ".html": {
+          "relative_path": "quick_guide.html",
+          "hash": "poAELnp5pUVswfnG4AXnVdgls8EJJQl7nHjqui9hrps="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    }
+  ],
+  "incremental_info": [
+    {
+      "status": {
+        "can_incremental": true,
+        "incrementalPhase": "build",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {
+        "ConceptualDocumentProcessor": {
+          "can_incremental": true,
+          "incrementalPhase": "build",
+          "total_file_count": 1,
+          "skipped_file_count": 0
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": true,
+          "incrementalPhase": "build",
+          "total_file_count": 30,
+          "skipped_file_count": 30
+        },
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        }
+      }
+    },
+    {
+      "status": {
+        "can_incremental": true,
+        "details": "Can support incremental post processing.",
+        "incrementalPhase": "postProcessing",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {}
+    }
+  ],
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}

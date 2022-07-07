@@ -1,0 +1,734 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Sandstorm SDK for Unity </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Sandstorm SDK for Unity ">
+    <meta name="generator" content="docfx 2.58.9.0">
+    
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="styles/docfx.vendor.css">
+    <link rel="stylesheet" href="styles/docfx.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <meta property="docfx:navrel" content="toc">
+    <meta property="docfx:tocrel" content="toc">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="index.html">
+                <img id="logo" class="svg" src="logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+                
+                <ul class="nav level1 navbar-nav">
+                      <li>
+                          <a href="index.html" title="Quick Guide">Quick Guide</a>
+                      </li>
+                      <li>
+                          <a href="_api/Sandstorm.html" title="Api Documentation">Api Documentation</a>
+                      </li>
+                </ul>    </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        <div class="article row grid">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="sandstorm-sdk-for-unity">Sandstorm SDK for Unity</h1>
+
+<p>Sandstorm SDK provides in-game, intermission and bounty audio ads and allows publishers to generate new revenues from world-class brands.</p>
+<h2 id="requirements">Requirements</h2>
+<ul>
+<li>Unity version 2020.3.23f1 LTS</li>
+<li>iOS 11 (device only, simulator is currently not supported)</li>
+<li>Android minimum target 24</li>
+<li><a href="https://github.com/googlesamples/unity-jar-resolver">External Dependency Manager for Unity</a> - However, this documentation also describes the manual way without External Dependency Manager for Unity</li>
+<li>This library has been tested for compatibility with Facebook SDK, Firebase SDK, Google Mobile Ads SDK, Unity Ads and others. In case of problems, please make sure that all libraries are used in the latest versions.</li>
+</ul>
+<h2 id="setup">Setup</h2>
+<p>Below are the instructions required to configure the library properly. Read it carefully before applying any changes.</p>
+<h3 id="unity-3d">Unity 3d</h3>
+<h4 id="choose-sdk-versions">Choose SDK versions</h4>
+<p>You have to decide which version of SDK you want to use.
+Two available:</p>
+<ul>
+<li><strong>SandstormSDK</strong> - contains SDK functionality + extra user targeting provided by <a href="https://numbereight.ai">NumberEight</a>; this version will ask user for extra permissions (i.e. location)</li>
+<li><strong>SandstormLiteSDK</strong> - contains SDK functionality without extra user targeting; this version won't ask user for extra permissions</li>
+</ul>
+<pre><code class="lang-text">NumberEight is a AI software, which predicts the live context of a user (e.g. running, commuting) from sensors present in the device, and then packages them neatly into ID-less behavioural audiences (e.g. joggers, frequent shoppers).
+</code></pre>
+<p>Import to your Unity project <code>SandstormSDK.unitypackage</code> or <code>SandstormLiteSDK.unitypackage</code> according to your decision.</p>
+<h4 id="editor-setup">Editor setup</h4>
+<p>Currently, the library only works on the Android and iOS platforms. Operation in Unity Editor may be unspecified.</p>
+<p>After importing the unitypackage, add the SandstormDispatcher prefab (found in Sandstorm/Prefabs/SandstormDispatcher.prefab) to the hierarchy of the first scene.</p>
+<p>See attached image:</p>
+<p><img src="images/unity_dispatcher.png" alt="alt Dispatcher" title="Dispatcher"></p>
+<p>Ensure Scripting Backend is set to IL2CPP and API Compatibility Level is set to .NET 4.x</p>
+<p><img src="images/unity_settings.png" alt="alt Settings" title="Settings"></p>
+<h4 id="stripping">Stripping</h4>
+<p>If there are problems with <a href="https://docs.unity3d.com/Manual/ManagedCodeStripping.html">striping</a>, create a link.xml file in the Assets directory and add the following content to it:</p>
+<pre><code class="lang-xml">&lt;linker&gt;
+    &lt;assembly fullname=&quot;Sandstorm&quot; preserve=&quot;all&quot;/&gt;
+&lt;/linker&gt;
+</code></pre>
+<h3 id="android">Android</h3>
+<p>Please note the minimum requirements of the Android version. API Level should be set to at least version 24, and target to at least version 31.</p>
+<p><img src="images/player_config_0.png" alt="alt Android" title="Android"></p>
+<p>There are two possible ways to import a library for the Android platform. The first one (faster) using External Dependency Manager for Unity and the manual one, when this tool is not in the project. Both ways will be described below.</p>
+<h4 id="android---external-dependency-manager">Android - External Dependency Manager</h4>
+<p>If you already have External Dependency Manager in your project,
+just click on the top toolbar and choose accordingly: Assets/External Dependency Manager/Android Resolver/Resolve.</p>
+<p>Then find the &quot;Publishing Settings&quot; section (Edit/Project Settings/Player/Android) and check 4 checkboxes there: &quot;Custom Launcher Manifest&quot;, &quot;Custom Main Gradle Template&quot;, &quot;Custom Base Gradle Template&quot;, &quot;Custom Gradle Properties Template&quot;. This will create 4 new files which you then need to edit accordingly.</p>
+<h4 id="baseprojecttemplategradle-external-dependency-manager">baseProjectTemplate.gradle External Dependency Manager</h4>
+<p>In the &quot;baseProjectTemplate.gradle&quot; file, find the &quot;repositories&quot; section and add the following entry to it:</p>
+<pre><code class="lang-groovy">// Only if you're using SandstormSDK, not SandstormLiteSDK
+maven {
+    url 'https://repo.numbereight.ai/artifactory/gradle-release-local'
+}
+</code></pre>
+<p>An example of what such section might look like:</p>
+<pre><code class="lang-groovy">repositories {**ARTIFACTORYREPOSITORY**
+        google()
+        jcenter()
+        flatDir {
+            dirs &quot;${project(':unityLibrary').projectDir}/libs&quot;
+        }
+        // Only if you're using SandstormSDK, not SandstormLiteSDK
+        maven {
+            url 'https://repo.numbereight.ai/artifactory/gradle-release-local'
+        }
+    }
+</code></pre>
+<h4 id="maintemplategradle-external-dependency-manager">mainTemplate.gradle External Dependency Manager</h4>
+<p>In the &quot;mainTemplate.gradle&quot; file, find the &quot;dependencies&quot; section and add the following entries to it.</p>
+<pre><code class="lang-groovy">// Only if you're using SandstormSDK, not SandstormLiteSDK
+implementation('ai.numbereight.sdk:nesdk:3.4.0@aar') {
+    transitive = true
+}
+// Only if you're using SandstormSDK, not SandstormLiteSDK
+implementation 'ai.numbereight.sdk:audiences:3.4.0'
+</code></pre>
+<p>An example of what such a section might look like:</p>
+<pre><code class="lang-groovy">apply plugin: 'com.android.library'
+**APPLY_PLUGINS**
+
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation('ai.numbereight.sdk:nesdk:3.4.0@aar') {
+        transitive = true
+    }
+    implementation 'ai.numbereight.sdk:audiences:3.4.0'
+**DEPS**}
+</code></pre>
+<h4 id="launchermanifestxml-external-dependency-manager">LauncherManifest.xml External Dependency Manager</h4>
+<p>In the &quot;LauncherManifest.xml&quot; file located in the Assets/Plugins/Android, add following lines inside manifest tag:</p>
+<pre><code class="lang-xml">&lt;uses-permission android:name=&quot;com.google.android.gms.permission.AD_ID&quot;/&gt;
+
+&lt;!-- Add following lines only for SandstormSDK, not SandstormLiteSDK --&gt;
+&lt;uses-permission android:name=&quot;android.permission.ACCESS_FINE_LOCATION&quot; /&gt;
+&lt;uses-permission android:name=&quot;android.permission.ACCESS_COARSE_LOCATION&quot;/&gt;
+&lt;uses-permission android:name=&quot;android.permission.ACCESS_NETWORK_STATE&quot; /&gt;
+&lt;uses-permission android:name=&quot;android.permission.ACCESS_WIFI_STATE&quot; /&gt;
+&lt;uses-permission android:name=&quot;android.permission.READ_PHONE_STATE&quot; /&gt;
+&lt;uses-feature android:name=&quot;android.hardware.sensor.accelerometer&quot; android:required=&quot;true&quot; /&gt;
+</code></pre>
+<p>And following lines inside application tag:</p>
+<pre><code class="lang-xml">&lt;activity android:name=&quot;com.siroccomobile.adtonos.thundersdk.ui.ThunderActivity&quot; android:theme=&quot;@style/AppTheme.Transparent&quot; /&gt;
+</code></pre>
+<p>An example of what such section might look like:</p>
+<pre><code class="lang-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;!-- GENERATED BY UNITY. REMOVE THIS COMMENT TO PREVENT OVERWRITING WHEN EXPORTING AGAIN--&gt;
+&lt;manifest
+    xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    package=&quot;com.unity3d.player&quot;
+    xmlns:tools=&quot;http://schemas.android.com/tools&quot;
+    android:installLocation=&quot;preferExternal&quot;&gt;
+
+    &lt;uses-permission android:name=&quot;com.google.android.gms.permission.AD_ID&quot;/&gt;
+    &lt;uses-permission android:name=&quot;android.permission.ACCESS_FINE_LOCATION&quot; /&gt;
+    &lt;uses-permission android:name=&quot;android.permission.ACCESS_COARSE_LOCATION&quot;/&gt;
+    &lt;uses-permission android:name=&quot;android.permission.ACCESS_NETWORK_STATE&quot; /&gt;
+    &lt;uses-permission android:name=&quot;android.permission.ACCESS_WIFI_STATE&quot; /&gt;
+    &lt;uses-permission android:name=&quot;android.permission.READ_PHONE_STATE&quot; /&gt;
+
+    &lt;!-- Recommended to ensure the device has at least an accelerometer --&gt;
+    &lt;uses-feature android:name=&quot;android.hardware.sensor.accelerometer&quot; android:required=&quot;true&quot; /&gt;
+
+    &lt;supports-screens
+        android:smallScreens=&quot;true&quot;
+        android:normalScreens=&quot;true&quot;
+        android:largeScreens=&quot;true&quot;/&gt;
+
+    &lt;application android:extractNativeLibs=&quot;true&quot;
+                 android:label=&quot;@string/app_name&quot;
+                 android:icon=&quot;@mipmap/app_icon&quot;&gt;
+        
+        &lt;activity android:name=&quot;com.siroccomobile.adtonos.thundersdk.ui.ThunderActivity&quot; android:theme=&quot;@style/AppTheme.Transparent&quot; /&gt;
+        
+    &lt;/application&gt;
+</code></pre>
+<h4 id="gradletemplateproperties-external-dependency-manager">gradleTemplate.properties External Dependency Manager</h4>
+<p>In the &quot;gradleTemplate.properties&quot; file, ensure that the following entries are added or already exist:</p>
+<pre><code class="lang-text">android.useAndroidX=true
+android.enableJetifier=true
+</code></pre>
+<p>An example of what such a file might look like:</p>
+<pre><code class="lang-text">org.gradle.jvmargs=-Xmx**JVM_HEAP_SIZE**M
+org.gradle.parallel=true
+android.enableR8=**MINIFY_WITH_R_EIGHT**
+unityStreamingAssets=.unity3d**STREAMING_ASSETS**
+android.useAndroidX=true
+android.enableJetifier=true
+
+**ADDITIONAL_PROPERTIES**
+</code></pre>
+<h3 id="ios">iOS</h3>
+<p>The library has been tested for buildability for Xcode versions 12 and 13. However, version 13 is the recommended version. The process of building a package on iOS involves adding a description of the permissions used by the library. The whole thing can be found in the Assets/Editor/SandstormPostBuildiOS.cs file. There are a few strings there, which by default populate the appropriate fields in the Xcode project settings. These fields can be edited freely, and if the build process is more complex the whole code can be disabled. However, be sure to define the appropriate permissions in your Xcode project.</p>
+<p>Be sure to set the minimum iOS version to 11, as in the attached image:
+<img src="images/ios_config_1.png" alt="alt ios" title="ios"></p>
+<p>Also it is recommended to add extra frame on pause:</p>
+<p><img src="images/ios_player_config1.png" alt="alt ios" title="ios"></p>
+<h4 id="ios---external-dependency-manager">iOS - External Dependency Manager</h4>
+<p>We are using <a href="https://cocoapods.org">CocoaPods</a> for managing dependencies. Generated Xcode project will contain ready to use <strong>.workspace</strong> file. This should be the file you use everyday to build your iOS app.</p>
+<h2 id="using-the-sdk">Using the SDK</h2>
+<h3 id="initialization">Initialization</h3>
+<p>The first necessary step in the project is to call the ATSandstormSDK.Initialize method. It should be called at the start of the application, when the other components are created. The method is safe to be called multiple times. The Initialize method must be called every time the application starts. Below is an example of how this should be done:</p>
+<pre><code class="lang-Csharp">//other using..
+using Sandstorm;
+
+public class Initialization : MonoBehaviour
+{
+    void Awake() 
+    {
+        ATSandstormSDK.Initialize(context: new SandstormUnityContext(), dispatcher: FindObjectOfType&lt;SandstormDispatcherUnity&gt;());
+    }
+}
+</code></pre>
+<h3 id="start">Start</h3>
+<p>The library requires certain permissions and user consents for data collection. Therefore, one of the initial screens should show the user the terms and conditions containing the necessary information about the use and processing of personal data. This is done when the user first interacts with the application, so this is a good time to call the Start method. The method takes the consent flag as a parameter and then asks the user for the system permissions necessary for the application to work. The start method must be called every time the application starts. Additionally, the LoadLatestConsents method can be used, which returns the most recently granted consents. Below is an example of how this can be done:</p>
+<pre><code class="lang-Csharp">///It can be called up from the main menu or any other suitable place
+public void OnAppStarted() {
+    if (CanShowPrivacyPolicyPopup()) {
+        ShowPrivacyPolicyPopup(); //when ended shall call OnPrivacyPolicyPopupClosed
+    } else {
+        // You have to set NumberEight key before calling Start method.
+        // Only if you're using SandstormSDK, not SandstormLiteSDK.
+        ATSandstormSDK.SetNumberEightKey(&quot;YOUR_KEY&quot;);
+
+        ATSandstormSDK.Start(ATSandstormSDK.LoadLatestConsents() ?? AdTonosConsent.None);
+    }
+}
+
+public void OnPrivacyPolicyPopupClosed(AdTonosConsent consent) {
+    // You have to set NumberEight key before calling Start method.
+    // Only if you're using SandstormSDK, not SandstormLiteSDK.
+    ATSandstormSDK.SetNumberEightKey(&quot;YOUR_KEY&quot;);
+
+    //result param consent depends of the user consent. If user agrees then AllowAll, if he doesn't then None.
+    ATSandstormSDK.Start(consent);
+}
+
+public bool CanShowPrivacyPolicyPopup()
+{
+    return ATSandstormSDK.LoadLatestConsents() == null;
+}
+
+
+</code></pre>
+<h3 id="playing-ads">Playing Ads</h3>
+<p>There are several steps to follow in order to play the ads. First of all, using the SandstormVastUrlBuilder, enter the Sandstorm key. The next step is to make a request for ads using the RequestForAds method. One of its parameters is the prefab found in Assets/Sandstorm/Prefabs/SandstormView.prefab. The next steps are to wait for the ads to be obtained and to run the ads. A callback can be useful here to provide information about the current state and any errors. Below is an example of a class that will cause an advertisement to play.</p>
+<pre><code class="lang-Csharp">
+public class SandstormAds : MonoBehaviour, SandstormCallback
+{
+        private bool IsAdsLoaded {get; set;}
+
+        //rest of the code
+        //[...]
+        ///
+
+        private SandstormUnityView CreateSandstormUnity() 
+        {
+            ...
+        }
+
+        IEnumerator PlayAds()
+        {
+
+            yield return new WaitUntil(() =&gt; ATSandstormSDK.IsStarted());
+            ATSandstormSDK.AddCallback(this);
+            IsAdsLoaded = false;
+
+            // You can set default banner on-screen position for banner ads.
+            // This step is optional; default position is top of the screen
+            ATSandstormSDK.SetAdBannerPosition(SandstormBannerPosition.Bottom);
+
+            var builder = ATSandstormSDK.CreateBuilder();
+            builder.SetAdTonosKey(&quot;&quot;); //THIS MUST BE SET TO VALUE FROM AdTonos
+
+            // Set ad type you want to request.
+            // Two types available:
+            // - Regular - just audio ad,
+            // - BannerAd - audio ad with clickable banner on screen.
+            // This is optional - if you won't set it, SandstormAdType.Regular will be used.
+            var adType = SandstormAdType.BannerAd;
+            builder.SetAdType(adType);
+
+            var requestResult = ATSandstormSDK.RequestForAds(builder: builder, view: CreateSandstormUnity());
+
+            if (requestResult == SandstormAdRequestResult.Success)
+            {
+                yield return new WaitUntil(() =&gt; IsAdsLoaded);
+                if (ATSandstormSDK.PlayAd() == false) {
+                    // Handle error or retry request later.
+                    ATSandstormSDK.Clear();
+                    Debug.Log(&quot;Can't play ads&quot;);
+                }
+            }
+            else
+            {
+                Debug.Log(&quot;implement some error handling&quot;);
+            }
+
+
+            yield return null;
+
+        }
+
+        public void OnVastAdsLoaded()
+        {
+            Debug.Log(&quot;VastAdsLoaded&quot;);
+            IsAdsLoaded = true;
+        }
+
+        public void OnVastError(SandstormError vastError)
+        {
+            Debug.Log($&quot;OnVastError {vastError}&quot;);
+        }
+
+        public void OnVastAdsAvailabilityExpired()
+        {
+            Debug.Log(&quot;OnVastAdsAvailabilityExpired&quot;);
+        }
+
+        public void OnVastAdsStarted()
+        {
+            Debug.Log(&quot;OnVastAdsStarted&quot;);
+        }
+
+        public void OnVastAdPaused()
+        {
+            Debug.Log(&quot;OnVastAdPaused&quot;);
+        }
+
+        public void OnVastAdPlayStarted()
+        {
+            Debug.Log(&quot;OnVastAdPlayStarted&quot;);
+        }
+
+        public void OnVastAdsEnded()
+        {
+            Debug.Log(&quot;OnVastAdsEnded&quot;);
+        }
+
+        public void OnStarted()
+        {
+            Debug.Log(&quot;OnStarted&quot;);
+        }
+
+}
+</code></pre>
+<p>Delivering SandstormView can be done in a number of ways. If a DI framework is used, you can use it to create such an object. Below is the simplest method of delivery by dragging and using the Instantiate method.</p>
+<p><img src="images/unity_drag.png" alt="alt Unity3d" title="Unity3d"></p>
+<pre><code class="lang-Csharp">
+[SerializeField]
+private GameObject _prefabSandstormView;
+
+private SandstormUnityView CreateSandstormUnity()
+{
+    var gm = Instantiate(_prefabSandstormView, Vector3.zero, Quaternion.identity);
+    //Additional settings to AudioSource, e.g. adding mixers etc.
+    return gm.GetComponent&lt;SandstormUnityView&gt;();
+}
+
+</code></pre>
+<h3 id="clearing-and-disposing">Clearing and Disposing</h3>
+<p>You can call the Clear() method at any time, which will stop the playback and clear the current state of the ad playback. After calling the Clear method, the ad request must be executed again. The Clear method also executes automatically when the ad playback has finished or after critical errors that prevent playback.</p>
+<p>To release the memory used by the library completely, call the Dispose method. This is usually done when exiting the application. Note that after the Dispose method is executed, the only way to restore ad functionality is to call Initialize and Start again.</p>
+<h3 id="other-methods">Other methods</h3>
+<p>Please see documentation to get information about possible errors and other methods that can be invoked.</p>
+<h2 id="system-permissions">System permissions</h2>
+<p>During the first startup, the library will ask the user to grant system permissions. The process is automatic.</p>
+<h3 id="android-system-permissions">Android system permissions</h3>
+<p>The following system permissions are used by the library. They will be merged during build, so you do not need to declare them again in the application manifest.</p>
+<pre><code class="lang-xml">&lt;uses-permission android:name=&quot;com.google.android.gms.permission.AD_ID&quot;/&gt;
+&lt;!-- Required for SandstormSDK --&gt;
+&lt;uses-permission android:name=&quot;android.permission.ACCESS_FINE_LOCATION&quot; /&gt;
+&lt;uses-permission android:name=&quot;android.permission.ACCESS_COARSE_LOCATION&quot;/&gt;
+&lt;uses-permission android:name=&quot;android.permission.ACCESS_NETWORK_STATE&quot; /&gt;
+&lt;uses-permission android:name=&quot;android.permission.ACCESS_WIFI_STATE&quot; /&gt;
+&lt;uses-permission android:name=&quot;android.permission.READ_PHONE_STATE&quot; /&gt;
+&lt;uses-feature android:name=&quot;android.hardware.sensor.accelerometer&quot; android:required=&quot;true&quot; /&gt;
+&lt;uses-feature android:name=&quot;android.hardware.location&quot; android:required=&quot;false&quot; /&gt;
+&lt;uses-feature android:name=&quot;android.hardware.sensor.gyroscope&quot; android:required=&quot;false&quot; /&gt;
+&lt;uses-feature android:name=&quot;android.hardware.sensor.barometer&quot; android:required=&quot;false&quot; /&gt;
+&lt;uses-feature android:name=&quot;android.hardware.sensor.compass&quot; android:required=&quot;false&quot; /&gt;
+&lt;uses-feature android:name=&quot;android.hardware.sensor.light&quot; android:required=&quot;false&quot; /&gt;
+&lt;uses-feature android:name=&quot;android.hardware.sensor.proximity&quot; android:required=&quot;false&quot; /&gt;
+</code></pre>
+<h3 id="ios-system-permissions">iOS system permissions</h3>
+<p>The following keys describe the required system permissions</p>
+<pre><code class="lang-xml">&lt;!-- Required for both SandstormSDK and SandstormLiteSdk --&gt;
+&lt;key&gt;NSUserTrackingUsageDescription&lt;/key&gt;
+&lt;string&gt;This identifier will be used to deliver personalized ads to you.&lt;/string&gt;
+&lt;!-- Required only for SandstormSDK --&gt;
+&lt;key&gt;NSLocationWhenInUseUsageDescription&lt;/key&gt;
+&lt;string&gt;To determine the type of place the user is situated in while interacting with the app.&lt;/string&gt;
+&lt;key&gt;NSMotionUsageDescription&lt;/key&gt;
+&lt;string&gt;To determine physical interaction with the device while using the app.&lt;/string&gt;
+</code></pre>
+<h2 id="consents">Consents</h2>
+<p>Below is a list of what is included in the AdTonosConsent.AllowAll option</p>
+<ul>
+<li><code>PROCESSING</code> - Allow processing of data.</li>
+<li><code>SENSOR_ACCESS</code> - Allow use of the device's sensor data.</li>
+<li><code>STORAGE</code> - Allow storing and accessing information on the device.</li>
+<li><code>USE_FOR_AD_PROFILES</code> - Allow use of technology for personalised ads.</li>
+<li><code>USE_FOR_PERSONALISED_CONTENT</code> - Allow use of technology for personalised content.</li>
+<li><code>USE_FOR_REPORTING</code> - Allow use of technology for market research and audience insights.</li>
+<li><code>USE_FOR_IMPROVEMENT</code> - Allow use of technology for improving  products.</li>
+<li><code>LINKING_DEVICES</code> - Allow linking different devices to the user through deterministic or probabilistic means.</li>
+<li><code>USE_OF_DEVICE_INFO</code> - Allow use of automatically provided device information such as manufacturer, model, IP addresses and MAC addresses.</li>
+<li><code>USE_FOR_SECURITY</code> - Allow use of independent identifiers to ensure the secure operation of systems.</li>
+<li><code>USE_FOR_DIAGNOSTICS</code> - Allow processing of diagnostic information using an independent identifier to ensure the correct operation of systems.</li>
+<li><code>PRECISE_GEOLOCATION</code> - Allow use of precise geolocation data (within 500 metres accuracy).</li>
+</ul>
+<h2 id="appstore-data-guide">AppStore Data Guide</h2>
+<p>Since the release of iOS 14.5, developers must now declare the data they use in the App Privacy section of App Store Connect. In order to assist you in declaring the correct data being collected, we have created an simple guide.</p>
+<blockquote>
+<p><strong>Important</strong>
+If you are unsure what you need to declare, we recommend seeking advice from an appropriate professional.</p>
+</blockquote>
+<p>Further information on what is now required can be found on the <a href="https://developer.apple.com/app-store/app-privacy-details/">Apple developer section for app privacy details</a>.</p>
+<ul>
+<li><p>Step 1: Edit Data Types
+To declare the data sources used by ThunderSDK, select the App Privacy section on your app’s App Store settings page, and click Edit next to Data Types.</p>
+</li>
+<li><p>Step 2: Usage Data.</p>
+<ul>
+<li>Go to Usage Data section.</li>
+<li>Select Other Usage Data.</li>
+</ul>
+</li>
+<li><p>Step 3: Location Data Types.</p>
+<ul>
+<li>Go to Location section.</li>
+<li>Select Precise Location.</li>
+<li>Select Coarse Location.</li>
+</ul>
+</li>
+<li><p>Step 4: Justify the Data Used.</p>
+<p>Once the data used has been selected, you need to justify what the data is used for.</p>
+<ul>
+<li>Back to App Privacy.</li>
+<li>Click on Edit next to Precise Location in Location section.</li>
+<li>For each of the data types listed above, you should select Developer’s Advertising or Marketing</li>
+</ul>
+</li>
+<li><p>Step 5: Data Linkage</p>
+<p>You may also need to declare whether the data is linked to the user’s identity, or whether it is used for tracking. In both cases, ThunderSDK does not track users’ identites.</p>
+</li>
+</ul>
+<h2 id="manual-configuration">Manual Configuration</h2>
+<h3 id="manual-configuration-android-without-external-dependency-manager">Manual Configuration Android (without External Dependency Manager)</h3>
+<p>In a Unity3d project in which you have already imported the Sandstorm library, select &quot;Edit&quot; from the top menu and then &quot;Project settings...&quot;.  Then find the &quot;Player&quot; field and select the tab with the Android icon.
+Expand the &quot;Publishing Settings&quot; section. In this section, find and select the 5 checkboxes: &quot;Custom Launcher Manifest&quot;, &quot;Custom Main Gradle Template&quot;, &quot;Custom Launcher Gradle Template&quot;, &quot;Custom Base Gradle Template&quot;, &quot;Custom Gradle Properties Template&quot;. This will create 5 new files which you then need to edit accordingly.</p>
+<p>See attached image:</p>
+<p><img src="images/player_config_1.png" alt="alt Android" title="Android"></p>
+<h4 id="launchermanifestxml-manual">LauncherManifest.xml Manual</h4>
+<p>In the &quot;LauncherManifest.xml&quot; file located in the Assets/Plugins/Android, add following lines inside manifest tag:</p>
+<pre><code class="lang-xml">&lt;uses-permission android:name=&quot;com.google.android.gms.permission.AD_ID&quot;/&gt;
+&lt;!-- Required only for SandstormSDK, not SandstormLiteSDK --&gt;
+&lt;uses-permission android:name=&quot;android.permission.ACCESS_FINE_LOCATION&quot; /&gt;
+&lt;uses-permission android:name=&quot;android.permission.ACCESS_COARSE_LOCATION&quot;/&gt;
+&lt;uses-permission android:name=&quot;android.permission.ACCESS_NETWORK_STATE&quot; /&gt;
+&lt;uses-permission android:name=&quot;android.permission.ACCESS_WIFI_STATE&quot; /&gt;
+&lt;uses-permission android:name=&quot;android.permission.READ_PHONE_STATE&quot; /&gt;
+
+&lt;uses-feature android:name=&quot;android.hardware.sensor.accelerometer&quot; android:required=&quot;true&quot; /&gt;
+</code></pre>
+<p>And following lines inside application tag:</p>
+<pre><code class="lang-xml">&lt;activity android:name=&quot;com.siroccomobile.adtonos.thundersdk.ui.ThunderActivity&quot; android:theme=&quot;@style/AppTheme.Transparent&quot; /&gt;
+</code></pre>
+<p>An example of what such section might look like:</p>
+<pre><code class="lang-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;!-- GENERATED BY UNITY. REMOVE THIS COMMENT TO PREVENT OVERWRITING WHEN EXPORTING AGAIN--&gt;
+&lt;manifest
+    xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    package=&quot;com.unity3d.player&quot;
+    xmlns:tools=&quot;http://schemas.android.com/tools&quot;
+    android:installLocation=&quot;preferExternal&quot;&gt;
+
+    &lt;uses-permission android:name=&quot;com.google.android.gms.permission.AD_ID&quot;/&gt;
+    &lt;uses-permission android:name=&quot;android.permission.ACCESS_FINE_LOCATION&quot; /&gt;
+    &lt;uses-permission android:name=&quot;android.permission.ACCESS_COARSE_LOCATION&quot;/&gt;
+    &lt;uses-permission android:name=&quot;android.permission.ACCESS_NETWORK_STATE&quot; /&gt;
+    &lt;uses-permission android:name=&quot;android.permission.ACCESS_WIFI_STATE&quot; /&gt;
+    &lt;uses-permission android:name=&quot;android.permission.READ_PHONE_STATE&quot; /&gt;
+
+    &lt;!-- Recommended to ensure the device has at least an accelerometer --&gt;
+    &lt;uses-feature android:name=&quot;android.hardware.sensor.accelerometer&quot; android:required=&quot;true&quot; /&gt;
+
+    &lt;supports-screens
+        android:smallScreens=&quot;true&quot;
+        android:normalScreens=&quot;true&quot;
+        android:largeScreens=&quot;true&quot;/&gt;
+
+    &lt;application android:extractNativeLibs=&quot;true&quot;
+                 android:label=&quot;@string/app_name&quot;
+                 android:icon=&quot;@mipmap/app_icon&quot;&gt;
+        
+        &lt;activity android:name=&quot;com.siroccomobile.adtonos.thundersdk.ui.ThunderActivity&quot; android:theme=&quot;@style/AppTheme.Transparent&quot; /&gt;
+        
+    &lt;/application&gt;
+</code></pre>
+<h4 id="baseprojecttemplategradle-manual">baseProjectTemplate.gradle Manual</h4>
+<p>In the &quot;baseProjectTemplate.gradle&quot; file, find the &quot;repositories&quot; section and add the following entry to it:</p>
+<pre><code class="lang-groovy">// Required only for SandstormSDK, not SandstormLiteSDK
+maven {
+    url 'https://repo.numbereight.ai/artifactory/gradle-release-local'
+}
+</code></pre>
+<p>An example of what such section might look like:</p>
+<pre><code class="lang-groovy">repositories {**ARTIFACTORYREPOSITORY**
+        google()
+        jcenter()
+        flatDir {
+            dirs &quot;${project(':unityLibrary').projectDir}/libs&quot;
+        }
+        // Required only for SandstormSDK, not SandstormLiteSDK
+        maven {
+            url 'https://repo.numbereight.ai/artifactory/gradle-release-local'
+        }
+    }
+</code></pre>
+<h4 id="gradletemplateproperties-manual">gradleTemplate.properties Manual</h4>
+<p>In the &quot;gradleTemplate.properties&quot; file, ensure that the following entries are added or already exist:</p>
+<pre><code class="lang-text">android.useAndroidX=true
+android.enableJetifier=true
+</code></pre>
+<p>An example of what such a file might look like:</p>
+<pre><code class="lang-text">org.gradle.jvmargs=-Xmx**JVM_HEAP_SIZE**M
+org.gradle.parallel=true
+android.enableR8=**MINIFY_WITH_R_EIGHT**
+unityStreamingAssets=.unity3d**STREAMING_ASSETS**
+android.useAndroidX=true
+android.enableJetifier=true
+
+**ADDITIONAL_PROPERTIES**
+</code></pre>
+<h4 id="launchertemplategradle-manual">launcherTemplate.gradle Manual</h4>
+<p>In the &quot;launcherTemplate.gradle&quot; file, find the &quot;dependencies&quot; section and add the dependency for &quot;multidex&quot; to it as in the example below:</p>
+<pre><code class="lang-groovy">implementation &quot;androidx.multidex:multidex:2.0.1&quot;
+</code></pre>
+<p>An example of what such a section might look like:</p>
+<pre><code class="lang-groovy">dependencies {
+    implementation project(':unityLibrary')
+    implementation &quot;androidx.multidex:multidex:2.0.1&quot;
+    }
+</code></pre>
+<p>Also in the same file, find the &quot;android&quot; section and inside it the &quot;defaultConfig&quot; section. Here you should enable the option &quot;multiDexEnabled&quot; by setting the flag to true.</p>
+<pre><code class="lang-groovy">multiDexEnabled true  
+</code></pre>
+<p>example:</p>
+<pre><code class="lang-groovy">defaultConfig {
+        minSdkVersion **MINSDKVERSION**
+        targetSdkVersion **TARGETSDKVERSION**
+        applicationId '**APPLICATIONID**'
+        ndk {
+            abiFilters **ABIFILTERS**
+        }
+        versionCode **VERSIONCODE**
+        versionName '**VERSIONNAME**'
+        multiDexEnabled true  
+    }
+</code></pre>
+<p>In the &quot;android&quot; section, make sure the JAVA version is set to 1.8. If the entry below does not exist, add it.</p>
+<pre><code class="lang-groovy"> compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+</code></pre>
+<p>example of all changes:</p>
+<pre><code class="lang-groovy">dependencies {
+    implementation project(':unityLibrary')
+    implementation &quot;androidx.multidex:multidex:2.0.1&quot;
+    }
+
+android {
+    compileSdkVersion **APIVERSION**
+    buildToolsVersion '**BUILDTOOLS**'
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    defaultConfig {
+        minSdkVersion **MINSDKVERSION**
+        targetSdkVersion **TARGETSDKVERSION**
+        applicationId '**APPLICATIONID**'
+        ndk {
+            abiFilters **ABIFILTERS**
+        }
+        versionCode **VERSIONCODE**
+        versionName '**VERSIONNAME**'
+        multiDexEnabled true  
+    }
+</code></pre>
+<h4 id="maintemplategradle-manual">mainTemplate.gradle Manual</h4>
+<p>In the &quot;mainTemplate.gradle&quot; file, find the &quot;dependencies&quot; section and add the following entries to it.</p>
+<pre><code class="lang-groovy">// Required only for SandstormSDK, not SandstormLiteSDK
+implementation('ai.numbereight.sdk:nesdk:3.4.0@aar') {
+    transitive = true
+}
+
+implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9'
+implementation 'com.google.android.gms:play-services-ads-identifier:17.1.0'
+implementation 'com.google.guava:guava:28.0-android'
+implementation 'ai.numbereight.sdk:audiences:3.4.0'
+implementation &quot;org.jetbrains.kotlin:kotlin-stdlib:1.5.31&quot;
+implementation 'androidx.core:core-ktx:1.7.0'
+implementation 'androidx.appcompat:appcompat:1.4.0'
+</code></pre>
+<p>An example of what such a section might look like:</p>
+<pre><code class="lang-groovy">apply plugin: 'com.android.library'
+**APPLY_PLUGINS**
+
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation('ai.numbereight.sdk:nesdk:3.4.0@aar') {
+        transitive = true
+    }
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9'
+    implementation 'com.google.android.gms:play-services-ads-identifier:17.1.0'
+    implementation 'com.google.guava:guava:28.0-android'
+    implementation 'ai.numbereight.sdk:audiences:3.4.0'
+    implementation &quot;org.jetbrains.kotlin:kotlin-stdlib:1.5.31&quot;
+    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.appcompat:appcompat:1.4.0'
+**DEPS**}
+</code></pre>
+<p>Also in the same file, find the &quot;android&quot; section and inside it, make sure you set the JAVA version to 1.8. If the entry below does not exist, add it.</p>
+<pre><code class="lang-groovy"> compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+</code></pre>
+<h3 id="manual-configuration-ios-without-external-dependency-manager">Manual Configuration iOS (without External Dependency Manager)</h3>
+<p>If not installed, install <a href="https://cocoapods.org">CocoaPods</a>.</p>
+<h4 id="using-thundersdk-published-pod-recommended">Using ThunderSDK published pod (recommended)</h4>
+<p>After building the iOS project, add or edit <code>Podfile</code> by adding the following lines to the target UnityFramework</p>
+<pre><code class="lang-text">target 'UnityFramework' do
+    # add only one of the following
+    pod 'ThunderSDK' # add this line if you're using SandstormSDK
+    pod 'ThunderLiteSDK' # add this line if you're using SandstormLiteSDK
+end
+target 'Unity-iPhone' do
+end
+</code></pre>
+<p>Next, run command below, while in the Xcode project directory.</p>
+<pre><code class="lang-bash">pod install
+</code></pre>
+<p>If you get error <code>CocoaPods could not find compatible version for ...</code> then try to run <code>pod repo update</code> before <code>pod install</code>.
+After a successful install, you can open and build the project by selecting <strong>Unity-iPhone.xcworkspace</strong></p>
+<h4 id="using-thundersdk-local-copy-pod">Using ThunderSDK local copy pod</h4>
+<p>The first step is to copy the ThunderSDK.xcframework and ThunderSDK.podspec files to a directory on disk. Then edit the podspec file by changing its path. An example can be found below:</p>
+<pre><code class="lang-text">    s.source            = { :http =&gt; 'file:///Users/Sandstorm/library/ThunderSDK.xcframework' }
+</code></pre>
+<p>After building the iOS project, add or edit the Podfile by adding the following lines to the target UnityFramework</p>
+<pre><code class="lang-text">target 'UnityFramework' do
+    pod 'ThunderSDK', :path =&gt; 'FULL_PATH_TO_DIR/ThunderSDK.podspec'
+end
+target 'Unity-iPhone' do
+end
+</code></pre>
+<p>In the example, modify the path to the podspec file so that it matches the real path on disk, e.g:</p>
+<pre><code class="lang-text">pod 'ThunderSDK', :path =&gt; '/Users/Sandstorm/library/ThunderSDK.podspec'
+</code></pre>
+<p>Next, run command below, while in the Xcode project directory.</p>
+<pre><code class="lang-bash">pod install
+</code></pre>
+<p>After a successful install, you can open and build the project by selecting <strong>Unity-iPhone.xcworkspace</strong></p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="styles/docfx.js"></script>
+    <script type="text/javascript" src="styles/main.js"></script>
+  </body>
+</html>
