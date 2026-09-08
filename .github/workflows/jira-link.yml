@@ -1,0 +1,23 @@
+name: Link Jira issue to PR
+
+on:
+  pull_request:
+    types: [opened, edited]
+
+jobs:
+  add-jira-description:
+    runs-on: ubuntu-latest
+    name: Auto Jira Link Appender
+    permissions:
+      contents: read
+      pull-requests: write
+
+    steps:
+      - name: Checkout repository code
+        uses: actions/checkout@v4
+
+      - name: Add Jira Link to PR Description
+        uses: adtonos/jira-ticket-link-appender@v2.0.0
+        with:
+          jira-project-url: https://adtonos.atlassian.net/browse
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
