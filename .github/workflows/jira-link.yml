@@ -1,0 +1,19 @@
+name: Link Jira issue to PR
+on:
+  pull_request:
+    types: [opened, edited]
+
+jobs:
+  add-jira-description:
+    runs-on: ubuntu-latest
+    name: Auto jira link commenter
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Comment PR
+        uses: sbimochan/jira-link-commenter@v3.2
+        with:
+          jira-project-url: https://adtonos.atlassian.net/browse
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          custom-comment: 'Thank you for your contribution! :confetti_ball:'
